@@ -69,6 +69,17 @@ Sending fatal message to discord! ( Major oof!)
 
 This means that if your log level is set to `"error"`, but you add a callback to `"warn"`, all `"warn"` messages would not be printed in the console, but the attached callback _would_ fire.
 
+As an example:
+```lua
+local logger = CFCLogger( "MyProject", "fatal" )
+logger:on( "warn" ):call(function(message) print("I'm a 'warn' callback!") end)
+
+logger:warn("This is a test!")
+```
+Would only output:
+```
+I'm a 'warn' callback!
+```
 
 ## Example Usage
 
