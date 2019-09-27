@@ -25,7 +25,7 @@ class CFCLogger
         insert @callbacks[severity], callback
 
     runCallbacksFor: (severity, message) =>
-        [callback(message) for _,callback in pairs @callbacks[severity]]
+        callback(message) for _,callback in pairs @callbacks[severity]
 
     on: (severity) =>
         scope = self
