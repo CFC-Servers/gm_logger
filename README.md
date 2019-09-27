@@ -39,6 +39,11 @@ For example, maybe you want to forward all `fatal` messages to Discord.
 
 The syntax for adding callbacks is as follows:
 ```lua
+MyLoggingInstance:on( logLevel ):call( myCallback )
+```
+
+In an example:
+```lua
 local function forwardFatalToDiscord( message )
     -- send the message to discord
     print( "Sending fatal message to discord! ( " .. message .. ")" )
@@ -56,8 +61,9 @@ Output:
 Sending fatal message to discord! ( Major oof!)
 ```
 
-**Please note that the webhooks will run _regardless of the default log level setting_**
-This means that if your log level is set to `"error"`, but you add a callback to `"warn"`, the message would not be logged in the console, but the attached callback _will_ fire
+**Please note that the webhooks will run _regardless of the default log level setting_**.
+
+This means that if your log level is set to `"error"`, but you add a callback to `"warn"`, all `"warn"` messages would not be printed in the console, but the attached callback _would_ fire.
 
 
 ## Example Usage
