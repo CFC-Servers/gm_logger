@@ -65,7 +65,7 @@ Output:
 Sending fatal message to discord! ( Major oof!)
 ```
 
-**Please note that the webhooks will run _regardless of the default log level setting_**.
+**Please note that the callbacks will run _regardless of the default log level setting_**.
 
 This means that if your log level is set to `"error"`, but you add a callback to `"warn"`, all `"warn"` messages would not be printed in the console, but the attached callback _would_ fire.
 
