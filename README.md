@@ -34,7 +34,10 @@ Output:
 ```
 
 ## Callbacks
-The logger object allows you to "hook" on to messages of a given level.
+The logger object allows you to add callbacks to any log-level.
+If a message comes through with the matching log level, the callback is called.
+The callback is provided with one parameter, the contents of the message to be printed ("Before adding the prefixes like [MyProject]").
+
 For example, maybe you want to forward all `fatal` messages to Discord.
 
 The syntax for adding callbacks is as follows:
