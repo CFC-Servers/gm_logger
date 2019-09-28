@@ -2,6 +2,8 @@ require "moonscript"
 
 import insert from table
 
+export CFCLogger
+
 class CFCLogger
     @@severities = {
         "trace": 0,
