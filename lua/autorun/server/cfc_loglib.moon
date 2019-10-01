@@ -16,7 +16,7 @@ class CFCLogger
 
     new: (projectName, logLevel) =>
         @projectName = projectName
-        @logLevel = logLevel or "info"
+        @logLevel = ( @@severities[logLevel] and logLevel ) or "info"
         @callbacks = { severity,{} for severity,_ in pairs @@severities }
 
         for severity,_ in pairs @@severities
