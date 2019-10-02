@@ -9,6 +9,26 @@ Simply download a copy of the zip, or clone the repository straight into your ad
 ## Usage
 CFCLogger lets you create and configure your own logging object to be used in your project.
 
+Barebones usage example:
+```lua
+local logger = CFCLogger( "MyProjectName" )
+
+logger:trace( "This is an trace message!" )
+logger:debug( "This is an debug message!" )
+logger:info( "This is an info message!" )
+logger:warn( "This is an warn message!" )
+logger:error( "This is an error message!" )
+logger:fatal( "This is an fatal message!" )
+```
+
+Which produces this output:
+```
+[MyProjectName] [info] This is an info message!
+[MyProjectName] [warn] This is an warn message!
+[MyProjectName] [error] This is an error message!
+[MyProjectName] [fatal] This is an fatal message!
+```
+
 ## Logging Levels
 When a logger is created, one may pass an optional second parameter which defines the current log level of the app.
 By default it's set to `"info"` which means everything but `debug` and `trace` messages are printed. (`trace < debug < info < warn < error < fatal`)
@@ -79,26 +99,4 @@ logger:warn("This is a test!")
 Would only output:
 ```
 I'm a 'warn' callback!
-```
-
-## Example Usage
-
-Barebones usage:
-```lua
-local logger = CFCLogger( "MyProjectName" )
-
-logger:trace( "This is an trace message!" )
-logger:debug( "This is an debug message!" )
-logger:info( "This is an info message!" )
-logger:warn( "This is an warn message!" )
-logger:error( "This is an error message!" )
-logger:fatal( "This is an fatal message!" )
-```
-
-Which produces this output:
-```
-[MyProjectName] [info] This is an info message!
-[MyProjectName] [warn] This is an warn message!
-[MyProjectName] [error] This is an error message!
-[MyProjectName] [fatal] This is an fatal message!
 ```
