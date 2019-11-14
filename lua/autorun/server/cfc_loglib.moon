@@ -43,21 +43,6 @@ class CFCLogger
         @runCallbacksFor(severity, message)
 
 -- Development tests
-myLogger = CFCLogger("MyLogger")
-myLogger\addCallbackFor("fatal", (message) -> print "Alerting webhooker of fatal message: #{message}")
+my_logger = CFCLogger("CFC Logger")
 
-newLogger = CFCLogger("CFC_PvP")
-newLogger\on("error")\call((message) -> print "This is an Error callback for: #{message}")
-
-myLogger\trace("This is a trace message!")
-myLogger\debug("This is a debug message!")
-myLogger\info("This is an info message!")
-myLogger\warn("This is an warn message!")
-myLogger\error("This is an error message!")
-myLogger\fatal("This is an fatal message!")
-
-newLogger\addCallbackFor("fatal", (message) -> print "CALLBACK FOR: #{message}")
-
-newLogger\debug("Getting PvP Status!")
-newLogger\error("HERE I GO THROWING AGAIN")
-newLogger\fatal("FATAL ERR")
+my_logger\info "Loaded!"
