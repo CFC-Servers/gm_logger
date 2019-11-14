@@ -1,4 +1,3 @@
-require("moonscript")
 local insert
 insert = table.insert
 do

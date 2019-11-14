@@ -1,5 +1,3 @@
-require "moonscript"
-
 import insert from table
 
 export CFCLogger
