@@ -1,5 +1,9 @@
 local insert
 insert = table.insert
+local FORCED_LOG_LEVEL = (function()
+  local contents = file.Read("cfc/logger/forced_log_level.txt", "DATA")
+  return contents and string.gsub(contents, "%s", "") or nil
+end)()
 do
   local _class_0
   local _base_0 = {
@@ -32,7 +36,7 @@ do
   _class_0 = setmetatable({
     __init = function(self, projectName, logLevel)
       self.projectName = projectName
-      self.logLevel = logLevel or "info"
+      self.logLevel = FORCED_LOG_LEVEL or logLevel or "info"
       do
         local _tbl_0 = { }
         for severity, _ in pairs(self.__class.severities) do
