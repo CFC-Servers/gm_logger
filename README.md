@@ -100,3 +100,6 @@ Would only output:
 ```
 I'm a 'warn' callback!
 ```
+
+## Global Override
+The log level for every newly-created Logger can be overridden by writing a log level (e.g. `debug`) to the config file `data/cfc/logger/forced_log_level.txt`
