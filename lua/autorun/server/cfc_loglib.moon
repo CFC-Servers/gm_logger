@@ -1,7 +1,12 @@
 import insert from table
 
-export CFCLogger
+FORCED_LOG_LEVEL = (
+    ->
+        contents = file.Read "cfc/logger/forced_log_level.txt", "DATA"
+        contents and string.gsub(contents, "%s", "") or nil
+)!
 
+export CFCLogger
 class CFCLogger
     @@severities = {
         "trace": 0,
@@ -14,7 +19,7 @@ class CFCLogger
 
     new: (projectName, logLevel) =>
         @projectName = projectName
-        @logLevel = logLevel or "info"
+        @logLevel = FORCED_LOG_LEVEL or logLevel or "info"
         @callbacks = { severity,{} for severity,_ in pairs @@severities }
 
         for severity,_ in pairs @@severities
