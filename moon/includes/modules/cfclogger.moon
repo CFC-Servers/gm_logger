@@ -1,5 +1,3 @@
-AddCSLuaFile!
-
 import insert from table
 
 FORCED_LOG_LEVEL = (
