@@ -53,6 +53,25 @@ Output:
 [MyProjectName] [fatal] This is an fatal message!
 ```
 
+Log levels can be changed after instantiation.
+
+For example,
+
+```lua
+local logger = CFCLogger( "MyProjectName", "error" )
+
+print( logger.logLevel )
+
+logger.logLevel = "info"
+
+print( logger.logLevel )
+```
+Would output:
+```
+error
+info
+```
+
 ## Callbacks
 The logger object allows you to add callbacks to any log-level.
 If a message comes through with the matching log level, the callback is called.
@@ -85,9 +104,9 @@ Output:
 Sending fatal message to discord! ( Major oof!)
 ```
 
-**Please note that the callbacks will run _regardless of the default log level setting_**.
+**Please note that callbacks will only run for levels >= your currently selected log level.
 
-This means that if your log level is set to `"error"`, but you add a callback to `"warn"`, all `"warn"` messages would not be printed in the console, but the attached callback _would_ fire.
+This means that if your log level is set to `"error"`, but you add a callback to `"warn"`, all `"warn"` messages would not be printed in the console _and_ the callbacks wouldn't run.
 
 As an example:
 ```lua
@@ -96,10 +115,7 @@ logger:on( "warn" ):call(function(message) print("I'm a 'warn' callback!") end)
 
 logger:warn("This is a test!")
 ```
-Would only output:
-```
-I'm a 'warn' callback!
-```
+Would output nothing.
 
 ## Global Override
 The log level for every newly-created Logger can be overridden by writing a log level (e.g. `debug`) to the config file `data/cfc/logger/forced_log_level.txt`
