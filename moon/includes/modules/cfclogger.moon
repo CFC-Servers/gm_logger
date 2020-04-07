@@ -1,9 +1,11 @@
-import insert from table
+import Read from file
+import gsub from string
+import insert, concat, ToString from table
 
-FORCED_LOG_LEVEL = (
+LOG_LEVEL_OVERRIDE = (
     ->
-        contents = file.Read "cfc/logger/forced_log_level.txt", "DATA"
-        contents and string.gsub(contents, "%s", "") or nil
+        contents = Read "cfc/logger/forced_log_level.txt", "DATA"
+        contents and gsub(contents, "%s", "") or nil
 )!
 
 export CFCLogger
@@ -19,18 +21,18 @@ class CFCLogger
 
     new: (projectName, logLevel) =>
         @projectName = projectName
-        @logLevel = FORCED_LOG_LEVEL or logLevel or "info"
-        @callbacks = { severity,{} for severity,_ in pairs @@severities }
+        @logLevel = LOG_LEVEL_OVERRIDE or logLevel or "info"
+        @callbacks = { severity,{} for severity in pairs @@severities }
 
-        for severity,_ in pairs @@severities
-            @[severity] = (message) =>
-                @_log(message, severity)
+        for severity in pairs @@severities
+            @[severity] = (...) =>
+                @_log(severity, ...)
 
     addCallbackFor: (severity, callback) =>
         insert @callbacks[severity], callback
 
     runCallbacksFor: (severity, message) =>
-        callback(message) for _,callback in pairs @callbacks[severity]
+        callback message for callback in *@callbacks[severity]
 
     on: (severity) =>
         scope = self
@@ -39,13 +41,23 @@ class CFCLogger
 
         { call: addCallback }
 
-    _log: (message, severity) =>
-        if @@severities[severity] >= @@severities[@logLevel]
-            print "[#{@projectName}] [#{severity}] #{message}"
+    formatParams: (...) =>
+        values = {...}
+
+        -- Ensure all values are strings
+        values = [istable(v) and ToString(v) or tostring(v) for v in *values]
+
+        concat values, " "
+
+    _log: (severity, ...) =>
+        return if @@severities[severity] < @@severities[@logLevel]
+
+        message = @formatParams ...
+        print "[#{@projectName}] [#{severity}] #{message}"
 
         @runCallbacksFor(severity, message)
 
 -- Development tests
 my_logger = CFCLogger("CFC Logger")
 
-my_logger\info "Loaded!"
+my_logger\info "Loaded!", "testvalue", 5, test1: "test2"
