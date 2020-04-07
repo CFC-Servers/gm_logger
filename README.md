@@ -104,7 +104,7 @@ Output:
 Sending fatal message to discord! ( Major oof!)
 ```
 
-**Please note that callbacks will only run for levels >= your currently selected log level.
+Please note that callbacks will only run for levels >= your currently selected log level.
 
 This means that if your log level is set to `"error"`, but you add a callback to `"warn"`, all `"warn"` messages would not be printed in the console _and_ the callbacks wouldn't run.
 
