@@ -57,7 +57,5 @@ class CFCLogger
 
         @runCallbacksFor(severity, message)
 
--- Development tests
-my_logger = CFCLogger("CFC Logger")
-
-my_logger\info "Loaded!", "testvalue", 5, test1: "test2"
+cfcLogger = CFCLogger "CFC Logger"
+cfcLogger\info "Loaded!"
