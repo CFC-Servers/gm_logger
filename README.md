@@ -3,8 +3,10 @@
 
 
 ## Installation
-Simply download a copy of the zip, or clone the repository straight into your addons folder! (When we finalize the API, we won't release breaking changes to master)
+Simply download a copy of the zip, or clone the repository straight into your addons folder! 
 
+
+You must compile the moonscript to lua `moonc -t lua moon/*`
 
 ## Usage
 CFCLogger lets you create and configure your own logging object to be used in your project.
