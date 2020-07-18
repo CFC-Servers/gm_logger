@@ -1,4 +1,4 @@
-# CFC's Logging Library (BETA)
+# CFC's Logging Library
 
 
 
