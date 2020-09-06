@@ -13,6 +13,8 @@ CFCLogger lets you create and configure your own logging object to be used in yo
 
 Barebones usage example:
 ```lua
+require( "cfclogger" )
+
 local logger = CFCLogger( "MyProjectName" )
 
 logger:trace( "This is an trace message!" )
@@ -39,6 +41,8 @@ Any message sent with a lower log-level than the one defined in the logger objec
 
 As an example, if you set the default log level to `"error"`, then only `"error"` and `"fatal"` messages are printed.
 ```lua
+require( "cfclogger" )
+
 local logger = CFCLogger( "MyProjectName", "error" )
 
 logger:trace( "This is an trace message!" )
@@ -60,6 +64,7 @@ Log levels can be changed after instantiation.
 For example,
 
 ```lua
+require( "cfclogger" )
 local logger = CFCLogger( "MyProjectName", "error" )
 
 print( logger.logLevel )
@@ -89,6 +94,8 @@ MyLoggingInstance:on( logLevel ):call( myCallback )
 
 In an example:
 ```lua
+require( "cfclogger" )
+
 local function forwardFatalToDiscord( message )
     -- send the message to discord
     print( "Sending fatal message to discord! ( " .. message .. ")" )
@@ -112,6 +119,8 @@ This means that if your log level is set to `"error"`, but you add a callback to
 
 As an example:
 ```lua
+require( "cfclogger" )
+
 local logger = CFCLogger( "MyProject", "fatal" )
 logger:on( "warn" ):call(function(message) print("I'm a 'warn' callback!") end)
 
