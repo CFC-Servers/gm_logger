@@ -5,8 +5,9 @@
 ## Installation
 Simply download a copy of the zip, or clone the repository straight into your addons folder! 
 
-
 You must compile the moonscript to lua `moonc -t lua moon/*`
+
+**Note:** Pre-compiled versions are available in **[Releases](https://github.com/CFC-Servers/cfc_logger/releases/)**
 
 ## Usage
 CFCLogger lets you create and configure your own logging object to be used in your project.
