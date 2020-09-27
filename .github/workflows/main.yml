@@ -44,7 +44,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          body: Latest Release
+          body: Latest Release with pre-compiled Lua (Ready to put in your addons directory)
           draft: false
           prerelease: false
 
