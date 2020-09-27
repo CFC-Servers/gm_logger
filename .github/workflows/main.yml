@@ -29,7 +29,7 @@ jobs:
         run: sudo luarocks install moonscript
       
       - name: Build Lua
-        run: moonscript -t lua moon/*
+        run: moonc -t lua moon/*
       
       - name: Remove Moonscript
         run: rm -rf moon
