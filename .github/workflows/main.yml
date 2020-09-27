@@ -1,0 +1,43 @@
+name: Build Lua
+
+# Triggers the workflow on master pushes
+on:
+  push:
+    branches: [release-testing]
+    # Sequence of patterns matched against refs/tags
+    #tags:
+    #  - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Update apt
+        run: sudo apt-get update -y
+
+      # Runs a set of commands using the runners shell
+      - name: Install LuaRocks
+        run: sudo apt-get install -y luarocks
+      
+      - name: Build Lua
+        run: moonscript -t lua moon/*
+      
+      - name: Remove Moonscript
+        run: rm -rf moon
+      
+      - name: Publish Release
+        # Used to publish a release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: Latest Release
+          draft: false
+          prerelease: false
