@@ -1,17 +1,15 @@
-name: Create Release
+name: Create Moonscript Release
 
-# Triggers the workflow on master pushes
 on:
   push:
     tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'v*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v2
 
       - name: CD
@@ -31,9 +29,12 @@ jobs:
 
       - name: Prepare Release Asset
         run: rm -rf moon .git*
+
+      - name: Move into subdirectory
+        run: mkdir ${{ github.event.repository.name }} && mv !(${{ github.event.repository.name }}) ${{ github.event.repository.name }}
       
       - name: Create Release Asset
-        run: zip -r9 cfc_logger.zip .
+        run: zip -r9 ${{ github.event.repository.name }}.zip .
 
       - name: Publish Release
         id: create_release
@@ -54,6 +55,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./cfc_logger.zip
-          asset_name: cfc_logger.zip
+          asset_path: ./${{ github.event.repository.name }}.zip
+          asset_name: ${{ github.event.repository.name }}.zip
           asset_content_type: application/zip
