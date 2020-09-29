@@ -27,8 +27,22 @@ jobs:
       - name: Build Lua
         run: moonc -t lua moon/*
 
-      - name: Prepare Release Asset
-        run: rm -rf moon .git*
+      - name: Remove moon
+        run: rm -rf moon
+
+      - name: Remove github dir
+        run: rm -rf .github
+
+      - name: Push to lua branch
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Release build: ${{ github.ref }}"
+          git push -f origin lua
+
+      - name: Remove .git dir
+        run: rm -rf .git
 
       - name: Create subdirectory
         run: mkdir ${{ github.event.repository.name }}
