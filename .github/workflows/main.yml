@@ -27,6 +27,13 @@ jobs:
       - name: Build Lua
         run: moonc -t lua moon/*
 
+      - name: Set github configs
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch --all
+          git checkout -b lua
+
       - name: Remove moon
         run: rm -rf moon
 
@@ -35,11 +42,9 @@ jobs:
 
       - name: Push to lua branch
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
           git add .
           git commit -m "Release build: ${{ github.ref }}"
-          git push -f origin lua
+          git push -uf origin lua
 
       - name: Remove .git dir
         run: rm -rf .git
