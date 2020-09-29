@@ -6,7 +6,8 @@
 Simply download a copy of the zip, or clone the repository straight into your addons folder! 
 
 Pre-compiled versions are available in **[Releases](https://github.com/CFC-Servers/cfc_logger/releases/)**
-The `lua` branch is a lua-only branch containing the compiled code from the most recent release. One can use this to easily keep `cfc_logger` up to date.
+
+The [`lua` branch](https://github.com/CFC-Servers/cfc_logger/tree/lua) is a lua-only branch containing the compiled code from the most recent release. One can use this to easily keep `cfc_logger` up to date.
 ```sh
 git clone --single-branch --branch lua git@github.com:CFC-Servers/cfc_logger.git
 ```
