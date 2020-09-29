@@ -27,8 +27,6 @@ jobs:
       - name: Build Lua
         run: moonc -t lua moon/*
 
-      - name: Set github configs
-
       - name: Remove moon
         run: rm -rf moon
 
