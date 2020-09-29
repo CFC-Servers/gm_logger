@@ -39,7 +39,7 @@ jobs:
           git config user.email github-actions@github.com
           git add .
           git commit -m "Release build: ${{ github.ref }}"
-          git push -uf origin master:lua
+          git push -f origin HEAD:lua
 
       - name: Remove .git dir
         run: rm -rf .git
