@@ -33,12 +33,15 @@ jobs:
       - name: Remove github dir
         run: rm -rf .github
 
+      - name: Create VERSION file
+        run: versionStr=${{ github.ref }};echo -e v${versionStr#*v} > VERSION
+
       - name: Push to lua branch
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m "Release build: ${{ github.ref }}"
+          git commit -m "Release build: $(cat VERSION)"
           git push -f origin HEAD:lua
 
       - name: Remove .git dir
