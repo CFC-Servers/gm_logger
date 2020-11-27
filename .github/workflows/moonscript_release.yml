@@ -79,4 +79,3 @@ jobs:
           asset_name: ${{ github.event.repository.name }}.zip
           asset_content_type: application/zip
 
-# forced_update_count: 2
