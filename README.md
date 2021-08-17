@@ -12,12 +12,18 @@
 ## Installation
 Simply download a copy of the zip, or clone the repository straight into your addons folder! 
 
-Pre-compiled versions are available in **[Releases](https://github.com/CFC-Servers/cfc_logger/releases/)**
+### Download
+The latest pre-compiled versions are available in **[Releases](https://github.com/CFC-Servers/cfc_logger/releases/)**
 
-The [`lua` branch](https://github.com/CFC-Servers/cfc_logger/tree/lua) is a lua-only branch containing the compiled code from the most recent release. One can use this to easily keep `cfc_logger` up to date.
+### Git Clone
+Because this project uses Moonscript, keeping it updated via `git` is _slightly_ more involved.
+
+The [`lua` branch](https://github.com/CFC-Servers/cfc_logger/tree/lua) is a lua-only branch containing the compiled code from the most recent release. You can use this branch to keep `cfc_logger` up to date.
 ```sh
 git clone --single-branch --branch lua git@github.com:CFC-Servers/cfc_logger.git
 ```
+
+Assuming you can get the project cloned (some hosting interfaces may not support this), any auto-updater software should work just fine.
 
 ## Usage
 CFCLogger lets you create and configure your own logging object to be used in your project.
