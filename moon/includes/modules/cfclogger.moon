@@ -4,7 +4,9 @@ import istable, pairs, print, tostring from _G
 LOG_LEVEL_OVERRIDE = CreateConVar "cfc_logger_forced_level", ""
 forcedLogLevel = ->
     level = LOG_LEVEL_OVERRIDE\GetString!
-    level == "" and nil or level
+
+    return nil if level == ""
+    return level
 
 export class CFCLogger
     @@severities =
