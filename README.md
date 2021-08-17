@@ -1,12 +1,12 @@
 # CFC's Logging Library
 
 # Glossary
- - [Installation](#installation)
- - [Usage](#usage)
- - [Logging Levels](#logging-levels)
- - [Callbacks](#callbacks)
- - [Scopes](#scopes)
- - [Global Override](#global-override)
+ - **[Installation](#installation)**
+ - **[Usage](#usage)**
+ - **[Logging Levels](#logging-levels)**
+ - **[Callbacks](#callbacks)**
+ - **[Scopes](#scopes)**
+ - **[Global Override](#global-override)**
 
 
 ## Installation
