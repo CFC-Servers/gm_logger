@@ -1,1 +1,1 @@
-AddCSLuaFile "includes/modules/cfclogger.lua"
+AddCSLuaFile "includes/modules/logger.lua"
