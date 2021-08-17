@@ -132,5 +132,38 @@ logger:warn("This is a test!")
 ```
 Would output nothing.
 
+## Scopes
+
+If you have a project consisting of many modules, you can easily "extend" a Logger instance with Scopes, helping you discern where your log line came from.
+
+e.g.
+```lua
+local MyProject = {}
+MyProject.Logger = CFCLogger( "MyProject" )
+
+MyProject.Storage = {}
+MyProject.Storage.Logger = MyProject.Logger:scope( "Storage" )
+
+MyProject.Logger:info( "Info from MyProject!" )
+MyProject.Storage.Logger:info( "Info from Storage!" )
+```
+
+would print:
+
+```
+[MyProject] [info] Info from MyProject!
+[MyProject] [Storage] [info] Info from Storage!
+```
+
+
+You can optionally inherit callbacks from a scoped logger's parent:
+```lua
+MyProject.Storage.Logger.runParentCallbacks = true
+```
+The Storage Logger would then inherit all callbacks set on `MyProject.Logger`
+
 ## Global Override
-The log level for every newly-created Logger can be overridden by writing a log level (e.g. `debug`) to the config file `data/cfc/logger/forced_log_level.txt`
+The log level for every newly-created Logger can be overridden by setting the `cfc_logger_forced_level` convar to a log level of your choice.
+
+
+e.g. `cfc_logger_forced_level "debug"`
