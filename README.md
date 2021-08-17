@@ -26,13 +26,13 @@ git clone --single-branch --branch lua git@github.com:CFC-Servers/cfc_logger.git
 Assuming you can get the project cloned (some hosting interfaces may not support this), any auto-updater software should work just fine.
 
 ## Usage
-CFCLogger lets you create and configure your own logging object to be used in your project.
+Logger lets you create and configure your own logging object to be used in your project.
 
 Barebones usage example:
 ```lua
-require( "cfclogger" )
+require( "logger" )
 
-local logger = CFCLogger( "MyProjectName" )
+local logger = Logger( "MyProjectName" )
 
 logger:trace( "This is an trace message!" )
 logger:debug( "This is an debug message!" )
@@ -63,7 +63,7 @@ As an example, if you set the default log level to `"error"`, then only `"error"
 ```lua
 require( "cfclogger" )
 
-local logger = CFCLogger( "MyProjectName", "error" )
+local logger = Logger( "MyProjectName", "error" )
 
 logger:trace( "This is an trace message!" )
 logger:debug( "This is an debug message!" )
@@ -85,7 +85,7 @@ For example,
 
 ```lua
 require( "cfclogger" )
-local logger = CFCLogger( "MyProjectName", "error" )
+local logger = Logger( "MyProjectName", "error" )
 
 print( logger.logLevel )
 
@@ -121,7 +121,7 @@ local function forwardFatalToDiscord( message )
     print( "Sending fatal message to discord! ( " .. message .. ")" )
 end
 
-local logger = CFCLogger( "MyProjectName" )
+local logger = Logger( "MyProjectName" )
 logger:on( "fatal" ):call( forwardFatalToDiscord )
 
 logger:fatal( "Major oof!" )
@@ -141,7 +141,7 @@ As an example:
 ```lua
 require( "cfclogger" )
 
-local logger = CFCLogger( "MyProject", "fatal" )
+local logger = Logger( "MyProject", "fatal" )
 logger:on( "warn" ):call(function(message) print("I'm a 'warn' callback!") end)
 
 logger:warn("This is a test!")
@@ -155,7 +155,7 @@ If you have a project consisting of many modules, you can easily "extend" a Logg
 e.g.
 ```lua
 local MyProject = {}
-MyProject.Logger = CFCLogger( "MyProject" )
+MyProject.Logger = Logger( "MyProject" )
 
 MyProject.Storage = {}
 MyProject.Storage.Logger = MyProject.Logger:scope( "Storage" )

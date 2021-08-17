@@ -1,14 +1,14 @@
 import insert, concat, ToString from table
 import istable, pairs, print, tostring from _G
 
-LOG_LEVEL_OVERRIDE = CreateConVar "cfc_logger_forced_level", ""
+LOG_LEVEL_OVERRIDE = CreateConVar "logger_forced_level", ""
 forcedLogLevel = ->
     level = LOG_LEVEL_OVERRIDE\GetString!
 
     return nil if level == ""
     return level
 
-export class CFCLogger
+export class Logger
     @@severities =
         trace: 0
         debug: 1
@@ -29,7 +29,7 @@ export class CFCLogger
                 @_log(severity, ...)
 
     scope: (scope, logLevel=@logLevel) =>
-        CFCLogger scope, logLevel, self
+        Logger scope, logLevel, self
 
     addCallbackFor: (severity, callback) =>
         insert @callbacks[severity], callback
@@ -66,4 +66,4 @@ export class CFCLogger
 
         @runCallbacksFor severity, message
 
-CFCLogger("CFC Logger")\info "Loaded!"
+Logger("CFC Logger")\info "Loaded!"
