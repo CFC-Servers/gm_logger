@@ -52,7 +52,10 @@ Which produces this output:
 
 ## Logging Levels
 When a logger is created, one may pass an optional second parameter which defines the current log level of the app.
-By default it's set to `"info"` which means everything but `debug` and `trace` messages are printed. (`trace < debug < info < warn < error < fatal`)
+By default it's set to `"info"` which means everything but `debug` and `trace` messages are printed.
+```
+trace < debug < info < warn < error < fatal
+```
 
 Any message sent with a lower log-level than the one defined in the logger object will not be printed.
 
