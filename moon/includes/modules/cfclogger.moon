@@ -43,6 +43,7 @@ export class CFCLogger
         @parent\runCallbacksFor severity, message
 
     on: (severity) =>
+        scope = self
         addCallback = (callback) -> @addCallbackFor(scope, severity, callback)
 
         { call: addCallback }
