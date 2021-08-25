@@ -10,7 +10,7 @@
 
 
 ## Installation
-Simply download a copy of the zip, or clone the repository straight into your addons folder! 
+Simply download a copy of the zip, or clone the repository straight into your addons folder!
 
 ### Download
 The latest pre-compiled versions are available in **[Releases](https://github.com/CFC-Servers/cfc_logger/releases/)**
@@ -61,7 +61,7 @@ Any message sent with a lower log-level than the one defined in the logger objec
 
 As an example, if you set the default log level to `"error"`, then only `"error"` and `"fatal"` messages are printed.
 ```lua
-require( "cfclogger" )
+require( "logger" )
 
 local logger = Logger( "MyProjectName", "error" )
 
@@ -84,7 +84,7 @@ Log levels can be changed after instantiation.
 For example,
 
 ```lua
-require( "cfclogger" )
+require( "logger" )
 local logger = Logger( "MyProjectName", "error" )
 
 print( logger.logLevel )
@@ -114,7 +114,7 @@ MyLoggingInstance:on( logLevel ):call( myCallback )
 
 In an example:
 ```lua
-require( "cfclogger" )
+require( "logger" )
 
 local function forwardFatalToDiscord( message )
     -- send the message to discord
@@ -139,7 +139,7 @@ This means that if your log level is set to `"error"`, but you add a callback to
 
 As an example:
 ```lua
-require( "cfclogger" )
+require( "logger" )
 
 local logger = Logger( "MyProject", "fatal" )
 logger:on( "warn" ):call(function(message) print("I'm a 'warn' callback!") end)
@@ -179,7 +179,7 @@ MyProject.Storage.Logger.runParentCallbacks = true
 The Storage Logger would then inherit all callbacks set on `MyProject.Logger`
 
 ## Global Override
-The log level for every newly-created Logger can be overridden by setting the `cfc_logger_forced_level` convar to a log level of your choice.
+The log level for every newly-created Logger can be overridden by setting the `logger_forced_level` convar to a log level of your choice.
 
 
-e.g. `cfc_logger_forced_level "debug"`
+e.g. `logger_forced_level "debug"`
